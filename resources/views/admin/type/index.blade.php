@@ -8,13 +8,13 @@
         <div class="card">
             <div class="card-body">
                 <h1 class="text-center text-success">
-                    Tutti i project
+                    Tutti i type
                 </h1>
                 
                 <div>
                     <div class="mb-4 text-center">
-                        <a href="{{ route('admin.project.create') }}" class="btn btn-primary p-1">
-                            Aggiungi progetto
+                        <a href="{{ route('admin.type.create') }}" class="btn btn-primary p-1">
+                            Aggiungi un tipo
                         </a>
                     </div>
                 </div>
@@ -24,38 +24,28 @@
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">Title</th>
+                                <th scope="col">Name</th>
                                 <th scope="col">Slug</th>
-                                <th scope="col">Type</th>
                                 <th scope="col">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($projects as $project)
+                            @foreach ($types as $type)
                                 <tr>
-                                    <th scope="row">{{ $project->id }}</th>
-                                    <td>{{ $project->title }}</td>
-                                    <td>{{ $project->slug }}</td>
+                                    <th scope="row">{{ $type->id }}</th>
+                                    <td>{{ $type->name }}</td>
+                                    <td>{{ $type->slug }}</td>
                                     <td>
-                                        @if ($project->type != null)
-                                            <a href="{{ route('admin.type.show', ['type' => $project->type->slug]) }}">
-                                                {{ $project->type->name }}
-                                            </a>
-                                        @else
-                                            -
-                                        @endif
-                                    </td>
-                                    <td>
-                                        <a href="{{ route('admin.project.show', ['project' => $project->slug]) }}" class="btn btn-xs btn-primary p-1">
+                                        <a href="{{ route('admin.type.show', ['type' => $type->slug]) }}" class="btn btn-xs btn-primary p-1">
                                             <i class="fa-solid fa-eye"></i>
                                         </a>
-                                        <a href="{{ route('admin.project.edit', ['project' => $project->slug]) }}" class="btn btn-xs btn-warning p-1">
+                                        <a href="{{ route('admin.type.edit', ['type' => $type->slug]) }}" class="btn btn-xs btn-warning p-1">
                                             <i class="fa-solid fa-pen-to-square"></i>
                                         </a>
                                         <form
-                                            onsubmit="return confirm('Sei sicuro di voler eliminare il progetto: {{ $project->title }}');"
+                                            onsubmit="return confirm('Sei sicuro di voler eliminare il progetto: {{ $type->name }}');"
                                             class="d-inline-block"
-                                            action="{{ route('admin.project.destroy', ['project' => $project->slug]) }}"
+                                            action="{{ route('admin.type.destroy', ['type' => $type->slug]) }}"
                                             method="POST">
                                             @csrf
                                             @method('DELETE')

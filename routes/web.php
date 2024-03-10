@@ -9,6 +9,8 @@ use App\Http\Controllers\Admin\MainController as AdminMainController;
 
 //importo controller
 use App\Http\Controllers\Admin\ProjectController;
+use App\Http\Controllers\Admin\TypeController;
+
 
 
 /*
@@ -34,8 +36,10 @@ Route::prefix('admin')
 
     Route::get('/dashboard', [AdminMainController::class, 'dashboard'])->name('dashboard');
     
-    //definisco tutte le 7 rotte
+    //definisco tutte le 7 rotte per projects
     Route::resource('project', ProjectController::class);
+    //definisco tutte le 7 rotte per types
+    Route::resource('type', TypeController::class);
     // php artisan route:list        mostra tutte le rotte definite
 });
 

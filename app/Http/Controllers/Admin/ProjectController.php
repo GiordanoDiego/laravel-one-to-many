@@ -10,6 +10,8 @@ use Illuminate\Support\Str;
 
 //model
 use App\Models\Project;
+use App\Models\Type;
+
 
 class ProjectController extends Controller
 {
@@ -28,7 +30,8 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('admin.projects.create');
+        $types = Type::all();
+        return view('admin.projects.create', compact('types'));
     }
 
     /**
@@ -87,8 +90,9 @@ class ProjectController extends Controller
     public function edit(string $slug)
     {
         $project = Project::where('slug', $slug)->firstOrFail();
+        $types = Type::all();
 
-        return view('admin.projects.edit', compact('project'));
+        return view('admin.projects.edit', compact('project','types'));
     }
 
     /**
@@ -139,7 +143,6 @@ class ProjectController extends Controller
        
         $project->delete();
 
-        
         return redirect()->route('admin.project.index');
     }
 }

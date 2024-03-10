@@ -53,6 +53,25 @@
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                 </div>
+
+                {{-- tipo --}}
+                <div class="mb-3">
+                    <label for="type_id" class="form-label">Tipo</label>
+                    <select name="type_id" id="type_id" class="form-select">
+                        <option
+                            value=""
+                            {{ old('type_id') == null ? 'selected' : '' }}>
+                            Seleziona un Tipo...
+                        </option>
+                        @foreach ($types as $type)
+                            <option
+                                value="{{ $type->id }}"
+                                {{ old('type_id') == $type->id ? 'selected' : '' }}>
+                                {{ $type->name }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
     
                 <div>
                     <button type="submit" class="btn btn-success w-100">

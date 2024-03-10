@@ -1,9 +1,15 @@
 <?php
 
 namespace Database\Seeders;
-
+use Illuminate\Support\Facades\DB;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+
+//model
+use App\Models\Project;
+use App\Models\Type;
+use App\Models\User;
+
 
 class DatabaseSeeder extends Seeder
 {
@@ -11,12 +17,14 @@ class DatabaseSeeder extends Seeder
      * Seed the application's database.
      */
     public function run(): void
-    {
-        // \App\Models\User::factory(10)->create();
+    {   
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+
+        // Chiamate ai seeders
+        $this->call([
+            TypeSeeder::class,
+            ProjectSeeder::class,
+            UserSeeder::class
+        ]);
     }
 }
